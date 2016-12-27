@@ -9,6 +9,8 @@ sub _sep
   PkgConfig::LibPkgConf::Client->path_sep;
 }
 
+# Not used internally!  But computed just in case someone wants to
+# check it.
 our @DEFAULT_SEARCH_PATH = PkgConfig::LibPkgConf::Client->new->path;
 
 sub find
