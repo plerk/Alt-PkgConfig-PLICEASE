@@ -3,10 +3,11 @@ package PkgConfig;
 use strict;
 use warnings;
 use PkgConfig::LibPkgConf::Client;
+use PkgConfig::LibPkgConf::Util   ();
 
 sub _sep
 {
-  PkgConfig::LibPkgConf::Client->path_sep;
+  PkgConfig::LibPkgConf::Util::path_sep();
 }
 
 # Not used internally!  But computed just in case someone wants to
