@@ -35,7 +35,12 @@ sub find
     $client{path} = $options{search_path_override};
   }
   
-  my $package = PkgConfig::LibPkgConf::Client->new(\%client)->find($library);
+  my $client = PkgConfig::LibPkgConf::Client->new(\%client);
+  
+  my $package = 
+    $options{file_path}
+    ? $client->package_from_file($options{file_path})
+    : $client->find($library);
   my $errmsg  = $package ? undef : 'No such file';
 
   bless {
