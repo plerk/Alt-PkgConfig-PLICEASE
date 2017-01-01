@@ -22,7 +22,7 @@ sub find
   
   if($options{search_path})
   {
-    my @path = PkgConfig::LibPkgConf::Client->new->path;
+    my @path = @DEFAULT_SEARCH_PATH;
     unshift @path,
       ref $options{search_path}
       ? @{ $options{search_path} }
@@ -93,7 +93,7 @@ sub get_cflags
 
   my @list = $self->_package
     ? $self->_static
-      ? ($self->_package->list_cflags, $self->_package->list_cflags_private)
+      ? ($self->_package->list_cflags_static)
       : ($self->_package->list_cflags)
     : ();
 
@@ -108,7 +108,7 @@ sub get_ldflags
 
   my @list = $self->_package
     ? $self->_static
-      ? ($self->_package->list_libs, $self->_package->list_libs_private)
+      ? ($self->_package->list_libs_static)
       : ($self->_package->list_libs)
     : ();
 
